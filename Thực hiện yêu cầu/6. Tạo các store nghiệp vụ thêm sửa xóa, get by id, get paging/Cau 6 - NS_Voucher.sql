@@ -1,0 +1,197 @@
+/*** auto generate code ***/ 
+SET ANSI_NULLS ON 
+
+GO
+
+SET QUOTED_IDENTIFIER ON
+
+GO
+
+create procedure [dbo].[NS_Voucher_create]
+(
+    @Ns_voucher_id nvarchar(50)
+    ,@Thoi_gian_tao datetime
+    ,@Nguoi_tao nvarchar(50)
+    ,@Thoi_cap_nhat datetime
+    ,@Nguoi_cap_nhat nvarchar(50)
+    ,@App_Org_Id nvarchar(50)
+    ,@Trang_thai int
+    ,@Ten_trang_thai nvarchar(50)
+    ,@Cong_ty nvarchar(50)
+    ,@Tong_nhan_vien int
+    ,@Tong_ngan_sach int
+    ,@Tong_voucher int
+)
+as
+begin
+    set nocount on
+
+    declare @temp nvarchar(50) = lower(newid())
+
+    insert into NS_Voucher
+    (
+        Ns_voucher_id
+        ,Thoi_gian_tao
+        ,Nguoi_tao
+        ,Thoi_cap_nhat
+        ,Nguoi_cap_nhat
+        ,App_Org_Id
+        ,Trang_thai
+        ,Ten_trang_thai
+        ,Cong_ty
+        ,Tong_nhan_vien
+        ,Tong_ngan_sach
+        ,Tong_voucher
+    )
+    values (
+        @temp
+        ,@Thoi_gian_tao
+        ,@Nguoi_tao
+        ,@Thoi_cap_nhat
+        ,@Nguoi_cap_nhat
+        ,@App_Org_Id
+        ,@Trang_thai
+        ,@Ten_trang_thai
+        ,@Cong_ty
+        ,@Tong_nhan_vien
+        ,@Tong_ngan_sach
+        ,@Tong_voucher
+    )
+    select @temp
+end
+GO
+/*** auto generate code ***/ 
+SET ANSI_NULLS ON 
+
+GO
+
+SET QUOTED_IDENTIFIER ON
+
+GO
+
+create procedure [dbo].[NS_Voucher_update]
+(
+    @Ns_voucher_id nvarchar(50)
+    ,@Thoi_gian_tao datetime
+    ,@Nguoi_tao nvarchar(50)
+    ,@Thoi_cap_nhat datetime
+    ,@Nguoi_cap_nhat nvarchar(50)
+    ,@App_Org_Id nvarchar(50)
+    ,@Trang_thai int
+    ,@Ten_trang_thai nvarchar(50)
+    ,@Cong_ty nvarchar(50)
+    ,@Tong_nhan_vien int
+    ,@Tong_ngan_sach int
+    ,@Tong_voucher int
+)
+as
+begin
+    set nocount on
+
+    update NS_Voucher set 
+        Thoi_gian_tao=@Thoi_gian_tao
+        ,Nguoi_tao=@Nguoi_tao
+        ,Thoi_cap_nhat=@Thoi_cap_nhat
+        ,Nguoi_cap_nhat=@Nguoi_cap_nhat
+        ,App_Org_Id=@App_Org_Id
+        ,Trang_thai=@Trang_thai
+        ,Ten_trang_thai=@Ten_trang_thai
+        ,Cong_ty=@Cong_ty
+        ,Tong_nhan_vien=@Tong_nhan_vien
+        ,Tong_ngan_sach=@Tong_ngan_sach
+        ,Tong_voucher=@Tong_voucher
+     where Ns_voucher_id=@Ns_voucher_id
+end
+GO
+/*** auto generate code ***/ 
+SET ANSI_NULLS ON 
+
+GO
+
+SET QUOTED_IDENTIFIER ON
+
+GO
+
+create procedure [dbo].[NS_Voucher_delete]
+(
+    @Ns_voucher_id nvarchar(50)
+)
+as
+begin
+    set nocount on
+
+    delete from NS_Voucher where Ns_voucher_id=@Ns_voucher_id
+
+end
+GO
+/*** auto generate code ***/ 
+SET ANSI_NULLS ON 
+
+GO
+
+SET QUOTED_IDENTIFIER ON
+
+GO
+
+create procedure [dbo].[NS_Voucher_getbyid]
+(
+    @Ns_voucher_id nvarchar(50)
+)
+as
+begin
+    set nocount on
+
+    select * from NS_Voucher where Ns_voucher_id=@Ns_voucher_id
+
+end
+GO
+/*** auto generate code ***/ 
+SET ANSI_NULLS ON 
+
+GO
+
+SET QUOTED_IDENTIFIER ON
+
+GO
+
+create procedure [dbo].[NS_Voucher_getpaging]
+(
+    @pageIndex int
+    ,@pageSize int
+)
+as
+begin
+    set nocount on
+
+    select
+        a.* 
+        ,count(*) over() as TotalCount
+    from NS_Voucher a 
+    where 1=1 
+    order by Ns_voucher_id
+        offset @pageSize * @pageIndex rows 
+    fetch next @pageSize rows only
+    
+
+end
+GO
+/*** auto generate code ***/ 
+SET ANSI_NULLS ON 
+
+GO
+
+SET QUOTED_IDENTIFIER ON
+
+GO
+
+create procedure [dbo].[NS_Voucher_getall]
+as
+begin
+    set nocount on
+
+    select a.* from NS_Voucher a 
+    
+end
+GO
+
+
